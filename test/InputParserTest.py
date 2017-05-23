@@ -1,6 +1,6 @@
 import unittest
 
-import InputParser
+from MarsRover import InputParser
 
 
 class TestInputParser(unittest.TestCase):
