@@ -24,6 +24,26 @@ class RoverTest(unittest.TestCase):
         rover.move()
         self.assertEqual(rover.position, (0, 1))
 
+    def test_turn_left_from_bearing_north_sets_bearing_west(self):
+        rover = Rover((1, 1), "N")
+        rover.turn_left()
+        self.assertEqual(rover.bearing, "W")
+
+    def test_turn_left_from_bearing_west_sets_bearing_south(self):
+        rover = Rover((1, 1), "W")
+        rover.turn_left()
+        self.assertEqual(rover.bearing, "S")
+
+    def test_turn_left_from_bearing_south_sets_bearing_east(self):
+        rover = Rover((1, 1), "S")
+        rover.turn_left()
+        self.assertEqual(rover.bearing, "E")
+
+    def test_turn_left_from_bearing_east_sets_bearing_north(self):
+        rover = Rover((1, 1), "E")
+        rover.turn_left()
+        self.assertEqual(rover.bearing, "N")
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -15,3 +15,16 @@ class Rover:
 
         elif self.bearing == "W":
             self.position = (self.position[0] - 1, self.position[1])
+
+    def turn_left(self):
+        if self.bearing == "N":
+            self.bearing = "W"
+
+        elif self.bearing == "W":
+            self.bearing = "S"
+
+        elif self.bearing == "S":
+            self.bearing = "E"
+
+        elif self.bearing == "E":
+            self.bearing = "N"
