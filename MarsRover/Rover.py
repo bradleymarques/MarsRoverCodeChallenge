@@ -28,3 +28,16 @@ class Rover:
 
         elif self.bearing == "E":
             self.bearing = "N"
+
+    def turn_right(self):
+        if self.bearing == "N":
+            self.bearing = "E"
+
+        elif self.bearing == "E":
+            self.bearing = "S"
+
+        elif self.bearing == "S":
+            self.bearing = "W"
+
+        elif self.bearing == "W":
+            self.bearing = "N"
