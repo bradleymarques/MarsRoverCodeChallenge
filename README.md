@@ -1,7 +1,7 @@
 ## Instructions to Run
-...
+... currently working on making this project distributable. So far it works on my machine in a Python 3.6.1 virtualenv. I need to give the project an environment setup feature.
 ### testing
-`python InputParserTest.py`
+to be continued
 
 ## Design decisions
 I've broken the problem into three main modules:
