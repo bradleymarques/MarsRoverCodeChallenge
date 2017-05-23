@@ -1,20 +1,43 @@
+from MarsRover.DangerousMoveException import DangerousMoveException
+
+
 class Rover:
-    def __init__(self, position, bearing):
+    def __init__(self, position, bearing, safe_zone):
         self.position = position
         self.bearing = bearing
+        self.safeZone = safe_zone
+
+    def is_position_safe(self, position):
+        return self.safeZone.is_coordinate_in_safe_zone(position)
 
     def move(self):
         if self.bearing == "N":
-            self.position = (self.position[0], self.position[1] + 1)
+            next_position = (self.position[0], self.position[1] + 1)
+            if self.is_position_safe(next_position):
+                self.position = next_position
+            else:
+                raise DangerousMoveException(self.position, self.safeZone, next_position)
 
         elif self.bearing == "E":
-            self.position = (self.position[0] + 1, self.position[1])
+            next_position = (self.position[0] + 1, self.position[1])
+            if self.is_position_safe(next_position):
+                self.position = next_position
+            else:
+                raise DangerousMoveException(self.position, self.safeZone, next_position)
 
         elif self.bearing == "S":
-            self.position = (self.position[0], self.position[1] - 1)
+            next_position = (self.position[0], self.position[1] - 1)
+            if self.is_position_safe(next_position):
+                self.position = next_position
+            else:
+                raise DangerousMoveException(self.position, self.safeZone, next_position)
 
         elif self.bearing == "W":
-            self.position = (self.position[0] - 1, self.position[1])
+            next_position = (self.position[0] - 1, self.position[1])
+            if self.is_position_safe(next_position):
+                self.position = next_position
+            else:
+                raise DangerousMoveException(self.position, self.safeZone, next_position)
 
     def turn_left(self):
         if self.bearing == "N":
