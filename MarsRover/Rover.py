@@ -28,27 +28,15 @@ class Rover:
         self.position = next_position
 
     def turn_left(self):
-        if self.bearing == "N":
-            self.bearing = "W"
-
-        elif self.bearing == "W":
-            self.bearing = "S"
-
-        elif self.bearing == "S":
-            self.bearing = "E"
-
-        elif self.bearing == "E":
-            self.bearing = "N"
+        nwse = "NWSE"
+        self.bearing = shift_right_bearing_in_sequence(self.bearing, nwse)
 
     def turn_right(self):
-        if self.bearing == "N":
-            self.bearing = "E"
+        nesw = "NESW"
+        self.bearing = shift_right_bearing_in_sequence(self.bearing, nesw)
 
-        elif self.bearing == "E":
-            self.bearing = "S"
 
-        elif self.bearing == "S":
-            self.bearing = "W"
-
-        elif self.bearing == "W":
-            self.bearing = "N"
+def shift_right_bearing_in_sequence(current_bearing, nwse):
+    index_of_current_bearing = nwse.find(current_bearing)
+    index_of_bearing_left_of_current = (index_of_current_bearing + 1) % len(nwse)
+    return nwse[index_of_bearing_left_of_current]
