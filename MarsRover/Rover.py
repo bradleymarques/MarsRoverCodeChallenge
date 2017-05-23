@@ -13,31 +13,19 @@ class Rover:
     def move(self):
         if self.bearing == "N":
             next_position = (self.position[0], self.position[1] + 1)
-            if self.is_position_safe(next_position):
-                self.position = next_position
-            else:
-                raise DangerousMoveException(self.position, self.safeZone, next_position)
 
         elif self.bearing == "E":
             next_position = (self.position[0] + 1, self.position[1])
-            if self.is_position_safe(next_position):
-                self.position = next_position
-            else:
-                raise DangerousMoveException(self.position, self.safeZone, next_position)
 
         elif self.bearing == "S":
             next_position = (self.position[0], self.position[1] - 1)
-            if self.is_position_safe(next_position):
-                self.position = next_position
-            else:
-                raise DangerousMoveException(self.position, self.safeZone, next_position)
 
         elif self.bearing == "W":
             next_position = (self.position[0] - 1, self.position[1])
-            if self.is_position_safe(next_position):
-                self.position = next_position
-            else:
-                raise DangerousMoveException(self.position, self.safeZone, next_position)
+
+        if not self.is_position_safe(next_position):
+            raise DangerousMoveException(self.position, self.safeZone, next_position)
+        self.position = next_position
 
     def turn_left(self):
         if self.bearing == "N":
