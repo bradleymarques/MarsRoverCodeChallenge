@@ -6,6 +6,7 @@ class Rover:
         self.position = position
         self.bearing = bearing
         self.safeZone = safe_zone
+        self.command_sequence = []
 
     def is_position_safe(self, position):
         return self.safeZone.is_coordinate_in_safe_zone(position)
@@ -34,6 +35,24 @@ class Rover:
     def turn_right(self):
         nesw = "NESW"
         self.bearing = shift_right_bearing_in_sequence(self.bearing, nesw)
+
+    def save_command_sequence(self, command_sequence):
+        self.command_sequence = command_sequence
+
+    def execute_command_sequence(self):
+        for command in self.command_sequence:
+            if command == 'M':
+                self.move()
+            elif command == 'L':
+                self.turn_left()
+            elif command == 'R':
+                self.turn_right()
+
+    def format_current_position(self):
+        return "%s %s %s" % (self.position[0], self.position[1], self.bearing)
+
+    def report_current_position(self):
+        print(self.format_current_position())
 
 
 def shift_right_bearing_in_sequence(current_bearing, nwse):

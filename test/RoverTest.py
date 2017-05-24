@@ -5,6 +5,7 @@ from MarsRover.Rover import Rover
 from MarsRover.Zone import Zone
 
 
+# TODO: refactor test class into smaller classes
 class RoverTest(unittest.TestCase):
     def setUp(self):
         self.safe_zone = Zone((2, 2))
@@ -92,6 +93,23 @@ class RoverTest(unittest.TestCase):
         rover = Rover((1, 1), "W", self.safe_zone)
         rover.turn_right()
         self.assertEqual(rover.bearing, "N")
+
+    def test_format_current_position(self):
+        rover = Rover((1, 1), "W", self.safe_zone)
+        self.assertEqual(rover.format_current_position(), "1 1 W")
+
+    def test_execute_command_sequence(self):
+        rover = Rover((1, 1), "N", Zone((5, 5)))
+        rover.save_command_sequence("MMLM")
+        rover.execute_command_sequence()
+        self.assertEqual(rover.position, (0, 3))
+
+    def test_execute_command_sequence_throws_exception_when_trying_to_go_out_of_bounds(self):
+        with self.assertRaises(DangerousMoveException):
+            rover = Rover((1, 1), "N", Zone((5, 5)))
+            rover.save_command_sequence("MMLMM")
+            rover.execute_command_sequence()
+            self.fail("A DangerousMoveException should have been thrown")
 
 
 if __name__ == '__main__':
