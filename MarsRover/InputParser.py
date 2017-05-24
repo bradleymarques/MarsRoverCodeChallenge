@@ -12,6 +12,8 @@ def parse_input(file_name):
         starting_position = {"coordinate": starting_coordinate, "bearing": starting_bearing}
 
         command_sequence = [command for command in file.readline().strip('\n')]
+    except IOError:
+        print("IOError")
     finally:
         file.close()
     return grid_size, starting_position, command_sequence
