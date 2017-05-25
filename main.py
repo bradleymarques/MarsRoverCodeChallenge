@@ -1,11 +1,11 @@
 from MarsRover.InputParser import parse_input
 from MarsRover.Rover import Rover
 from MarsRover.Zone import Zone
-from test.RoverControllerTest import RoverController
+from MarsRover.RoverController import RoverController
 
 if __name__ == '__main__':
     # TODO: handle file location in OS generic way
-    instruction_file = "../example-input-file.txt"
+    instruction_file = "example-input-file.txt"
     grid_size, starting_position, command_sequence = parse_input(instruction_file)
 
     rover_zone = Zone(grid_size)
