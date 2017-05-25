@@ -1,11 +1,17 @@
 ## Instructions to Run
-... currently working on making this project distributable. So far it works on my machine in a Python 3.6.1 virtualenv. I need to give the project an environment setup feature.
 
-1. Edit the `example-input-file.txt` to include the input you would like to have run.
-2. Run the program by executing `python3 main.py`
+1. activate the virtualenvironment by navigating to the MarsRoverCodeChallenge directory and running `source rover-virtualenv/bin/activate`
+2. Edit the `example-input-file.txt` to include the input you would like to have run.
+3. Run the program by executing `python main.py`
+4. To exit the virtual environment, just run `deactivate`
 
 ### testing
-to be continued
+currently having trouble with test discovery. I would like `python -m unittest` to auto run all my tests.
+To run the tests of a class, run:
+- `python test/RoverTest.py`
+- `python test/RoverControllerTest.py`
+- `python test/ZoneTest.py`
+- `python test/InputParserTest.py`
 
 ## Design decisions
 I've broken the problem into three main parts:
