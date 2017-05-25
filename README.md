@@ -27,3 +27,7 @@ I've broken the problem into three main parts:
 
 ## Testing
 Each file has a corresponding test file which includes unit tests around non-trivial logic. The tests encode the expected behaviour of the functions defined in the class files and running these tests frequently during development will give you confidence that your changes have not had unintended changes.
+
+## Difficulties and Known Issues
+I can't manage to get the module discovery correct.
+For example, if you navigate to the test directory and try to run `python RoverTest.py`, it will fail to find the MarsRover module. However, you can run `python test/RoverTest.py` from the project root directory.
